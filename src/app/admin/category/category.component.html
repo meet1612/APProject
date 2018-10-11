@@ -1,0 +1,77 @@
+<br>
+<div class="container">
+    <div class="rows">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="text-align: center; font-size: 25px;"><b>Category Management</b></div>
+    </div>
+    <br>
+    <div class="rows">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <button mat-flat-button color="primary" (click)="onAddOnOff()">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>      ADD NEW CATEGORY
+              </button>
+        </div>
+      </div>
+</div>
+  <br>
+  <br>
+<div *ngIf="flag" class="container">
+    <form class="example-form">
+        <mat-form-field class="example-full-width1">
+          <input name="CategoryNAME" matInput placeholder="Category Name" value="" [(ngModel)]="catname" required>
+        </mat-form-field>
+        <br>
+        <div class="rows">
+          <div class="col-md-3"></div>
+          <div class="col-md-4">
+            <button (click)="onAdd()" mat-raised-button color="primary">Save</button></div>
+            <div class="col-md-4">
+            <button (click)="flag=false" mat-raised-button color="primary" >Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+<br>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search Category">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> </th>
+      <td mat-cell *matCellDef="let row">
+      <input type="checkbox" (change)="checkChange(row)">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
+      <td mat-cell *matCellDef="let row"> {{row.CategoryNAME}} </td>
+    </ng-container>
+
+     <ng-container matColumnDef="Action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let row">
+        <mat-icon (click)="onEdit(row)">edit</mat-icon>&nbsp;&nbsp;&nbsp;  | &nbsp;&nbsp;
+        <mat-icon (click)="onsingledelete(row)">delete</mat-icon>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+
+  </table>
+  <br>
+  <mat-paginator [pageSizeOptions]="[5, 7, 10]"></mat-paginator>
+</div>
+<br>
+<button mat-flat-button color="warn" (click)="deleteAll()">
+    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;DELETE
+  </button>
+  <br>
+  <br>

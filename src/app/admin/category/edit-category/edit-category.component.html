@@ -1,0 +1,15 @@
+<br>
+<b style="font-size: 20px;"><u>Edit Current Category Name</u></b>
+<br>
+<br>
+<label>Current Category Name :</label>
+<div class="form-group"><input class="form-control" [(ngModel)]="catname" disabled="true"></div>
+<br>
+<br>
+<label>Enter New Category Name:</label>
+<div class="form-group"><input class="form-control" [(ngModel)]="newcatname"></div>
+<br>
+  <div class="col-md-4">
+  <button (click)="onSave()" mat-raised-button color="primary">Save</button></div>
+  <div class="col-md-6">
+  <button (click)="onBack()" mat-raised-button color="primary">Back</button></div>
